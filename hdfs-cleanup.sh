@@ -15,7 +15,7 @@ hadoop fs -ls $DIR | grep "^d" | while read f; do
 	difference=$(( ( $now - $(date -d "$dir_date" +%s) ) / (24 * 60 * 60 ) ))
 	if [ $difference -gt $days ]; 
 	then
-		hadoop fs -ls `echo $f| awk '{ print $8 }'`;
+		hadoop fs -rm -r -skipTrash  `echo $f| awk '{ print $8 }'`;
 	fi
 done
 
